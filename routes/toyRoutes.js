@@ -5,5 +5,7 @@ const router = express.Router();
 
 // http://localhost:3000/api/v1/toys
 router.get("/api/v1/toys", ToyController.getAllToys);
+router.get("/api/v1/toys/newID", ToyController.getNewToyID);
+router.get("/api/v1/toys", ToyController.addNewToy);
 
 module.exports = router;
