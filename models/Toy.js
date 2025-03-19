@@ -25,6 +25,19 @@ class Toy {
 
         return newToy;
     }
+
+    static updateToy(id, {name, description, price}) {
+        const toys = this.getAllToys();
+        const toy =  toys.find(el => el.id === id);
+
+        if (name) toy.name = name;
+        if (description) toy.description = description;
+        if (price) toy.price = Number(price);
+
+        if (toy) fs.writeFileSync("./data/data.json", JSON.stringify(toys, null, 2));
+        return toy;
+
+    }
 }
 
 module.exports = Toy;

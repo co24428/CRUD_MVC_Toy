@@ -21,7 +21,7 @@ class ToyController {
             if (!toy) {
                 return res.status(404).json({
                     status: "fail",
-                    message: "id note exist",
+                    message: "id not exist",
                 });
             }
 
@@ -55,6 +55,29 @@ class ToyController {
             });
         } catch (err) {
             res.status(500).json({ status: "error", message: "Failed to add new toy" });
+        }
+    }
+
+    static updateToy(req, res) {
+        try{
+            const id = Number(req.params.id);
+            const toy = Toy.updateToy(id, req.body);
+
+
+            if (!toy) {
+                return res.status(404).json({
+                    status: "fail",
+                    id: id,
+                    message: "id not exist",
+                });
+            }
+
+            res.status(200).json({
+                status: "success",
+                data: toy,
+            });
+        } catch (err) {
+            res.status(500).json({ status: "error", message: "Failed to update the toy" });
         }
     }
 }

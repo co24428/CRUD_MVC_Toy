@@ -9,5 +9,6 @@ router.get("/api/v1/toys", ToyController.getAllToys);
 router.get("/api/v1/toys/:id", ToyController.getToysbyID);
 router.get("/api/v1/toys/newID", ToyController.getNewToyID);
 router.post("/api/v1/toys", ToyController.addNewToy);
+router.patch("/api/v1/toys/:id", ToyController.updateToy);
 
 module.exports = router;

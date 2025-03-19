@@ -12,10 +12,18 @@ http://localhost:3000/api/v1/toys/newID
 
 ```
 
-##POST
+## POST
 ```
 // in terminal
 curl -X POST "http://localhost:3000/api/v1/toys" \
      -H "Content-Type: application/json" \
      -d '{"name": "Pokemon Card Pack", "price": 12.99}'
+```
+
+## PATCH
+```
+// in terminal
+curl -X PATCH "http://localhost:3000/api/v1/toys/1" \
+     -H "Content-Type: application/json" \
+     -d '{"description": "Does Patch work?", "price": 360.00}'
 ```
