@@ -8,8 +8,29 @@ class ToyController {
                 status: "success",
                 data: toys,
             });
-        } catch (error) {
+        } catch (err) {
             res.status(500).json({ status: "error", message: "Failed to fetch toys" });
+        }
+    }
+
+    static getToysbyID(req, res) {
+        try {
+            const id = Number(req.params.id);
+            const toy = Toy.getToybyID(id)
+
+            if (!toy) {
+                return res.status(404).json({
+                    status: "fail",
+                    message: "id note exist",
+                });
+            }
+
+            res.status(200).json({
+                status: "success",
+                data: toy,
+            });
+        } catch (err) {
+            res.status(500).json({ status: "error", message: "Faild to fetch toy"});
         }
     }
 
@@ -20,7 +41,7 @@ class ToyController {
                 status: "success",
                 newID,
             });
-        } catch (error) {
+        } catch (err) {
             res.status(500).json({ status: "error", message: "Failed to generate new toy" });
         }
     }
@@ -32,7 +53,7 @@ class ToyController {
                 status: "success",
                 data: newToy,
             });
-        } catch (error) {
+        } catch (err) {
             res.status(500).json({ status: "error", message: "Failed to add new toy" });
         }
     }

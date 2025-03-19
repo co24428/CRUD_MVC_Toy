@@ -5,6 +5,11 @@ class Toy {
         return JSON.parse(fs.readFileSync("./data/data.json", "utf-8"));
     }
 
+    static getToybyID(id) {
+        const toys = this.getAllToys();
+        return toys.find(el => el.id === id);
+    }
+
     static getNewToyID() {
         const toys = this.getAllToys();
         const lastToy = toys[toys.length - 1];

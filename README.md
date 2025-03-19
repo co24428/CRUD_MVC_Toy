@@ -7,7 +7,9 @@ This is toy project for testing REST API, CRUD Methods with MVC Pattern.
 ```
 // in the browser
 http://localhost:3000/api/v1/toys
+http://localhost:3000/api/v1/toys/3 // get an item using its id (in this case, 3)
 http://localhost:3000/api/v1/toys/newID
+
 ```
 
 ##POST
