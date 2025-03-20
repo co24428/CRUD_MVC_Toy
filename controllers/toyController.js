@@ -80,6 +80,29 @@ class ToyController {
             res.status(500).json({ status: "error", message: "Failed to update the toy" });
         }
     }
+
+    static deleteToy(req, res) {
+        try {
+            const id = Number(req.params.id);
+            const toy = Toy.deleteToy(id, req.body);
+
+
+            if (!toy) {
+                return res.status(404).json({
+                    status: "fail",
+                    message: "id not exist",
+                });
+            }
+
+            res.status(200).json({
+                status: "success delete",
+                data: toy,
+            });
+
+        } catch (err) {
+            res.status(500).json({ status: "error", message: "Failed to delete the toy" });
+        }
+    }
 }
 
 module.exports = ToyController;

@@ -36,7 +36,20 @@ class Toy {
 
         if (toy) fs.writeFileSync("./data/data.json", JSON.stringify(toys, null, 2));
         return toy;
+    }
+    
+    static deleteToy(id) {
+        const toys = this.getAllToys();
+        const toyIndex = toys.findIndex(obj => obj.id === id);
 
+        if (toyIndex === -1) {
+            return false;
+        }
+        
+        const toy = toys[toyIndex]
+        toys.splice(toyIndex, 1);
+        fs.writeFileSync("./data/data.json", JSON.stringify(toys, null, 2));
+        return toy;
     }
 }
 

@@ -27,3 +27,9 @@ curl -X PATCH "http://localhost:3000/api/v1/toys/1" \
      -H "Content-Type: application/json" \
      -d '{"description": "Does Patch work?", "price": 360.00}'
 ```
+
+## DELETE
+```
+// in terminal
+curl -X DELETE "http://localhost:3000/api/v1/toys/4"
+```
