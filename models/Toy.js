@@ -2,7 +2,7 @@ const fs = require("fs");
 
 class Toy {
     static getAllToys() {
-        return JSON.parse(fs.readFileSync("./data/data.json", "utf-8"));
+        return JSON.parse(fs.readFileSync("./data/toys.json", "utf-8"));
     }
 
     static getToybyID(id) {
@@ -21,7 +21,7 @@ class Toy {
         const newToy = Object.assign({ id: this.getNewToyID() }, newToyData);
         toys.push(newToy);
 
-        fs.writeFileSync("./data/data.json", JSON.stringify(toys, null, 2));
+        fs.writeFileSync("./data/toys.json", JSON.stringify(toys, null, 2));
 
         return newToy;
     }
@@ -34,7 +34,7 @@ class Toy {
         if (description) toy.description = description;
         if (price) toy.price = Number(price);
 
-        if (toy) fs.writeFileSync("./data/data.json", JSON.stringify(toys, null, 2));
+        if (toy) fs.writeFileSync("./data/toys.json", JSON.stringify(toys, null, 2));
         return toy;
     }
     
@@ -48,7 +48,7 @@ class Toy {
         
         const toy = toys[toyIndex]
         toys.splice(toyIndex, 1);
-        fs.writeFileSync("./data/data.json", JSON.stringify(toys, null, 2));
+        fs.writeFileSync("./data/toys.json", JSON.stringify(toys, null, 2));
         return toy;
     }
 }
