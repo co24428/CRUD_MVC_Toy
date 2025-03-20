@@ -12,8 +12,8 @@ app.use(express.json());
 app.use("/assets", express.static(__dirname + "/public"));
 
 // Register toyRoutes under base URL "/api/v1/toys"
-app.use(toyRoutes);
 app.use("/api/v1/players", playerRoutes);
+app.use("/api/v1/toys", toyRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running: http://localhost:${port}`);

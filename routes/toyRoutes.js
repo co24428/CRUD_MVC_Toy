@@ -3,13 +3,12 @@ const ToyController = require("../controllers/ToyController");
 
 const router = express.Router();
 
-// add to base url in app.js -> "/"
+// add to base url in app.js -> "/api/v1/toys"
 // http://localhost:3000/api/v1/toys
-router.get("/api/v1/toys", ToyController.getAllToys);
-router.get("/api/v1/toys/:id", ToyController.getToysbyID);
-router.get("/api/v1/toys/newID", ToyController.getNewToyID);
-router.post("/api/v1/toys", ToyController.addNewToy);
-router.patch("/api/v1/toys/:id", ToyController.updateToy);
-router.delete("/api/v1/toys/:id", ToyController.deleteToy);
+router.get("/", ToyController.getAllToys);
+router.get("/:id", ToyController.getToysbyID);
+router.post("/", ToyController.addNewToy);
+router.patch("/:id", ToyController.updateToy);
+router.delete("/:id", ToyController.deleteToy);
 
 module.exports = router;
