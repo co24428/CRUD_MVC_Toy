@@ -34,18 +34,6 @@ class ToyController {
         }
     }
 
-    static getNewToyID(req, res) {
-        try {
-            const newID = Toy.getNewToyID();
-            res.status(200).json({
-                status: "success",
-                newID,
-            });
-        } catch (err) {
-            res.status(500).json({ status: "error", message: "Failed to generate new toy" });
-        }
-    }
-
     static addNewToy(req, res) {
         try {
             const newToy = Toy.addNewToy(req.body);
