@@ -4,12 +4,9 @@ class PlayerController {
     static getAllPlayers(req, res) {
         try {
             const players = Player.getAllPlayers();
-            res.status(200).json({
-                status: "success",
-                data: players,
-            });
+            PlayerController.generateLog(res, 200, "success", null, players);
         } catch (err) {
-            res.status(500).json({ status: "error", message: "Failed to fetch players" });
+            PlayerController.generateLog(res, 500, "error", "Failed to fetch players");
         }
     }
 
@@ -17,55 +14,30 @@ class PlayerController {
         try {
             const id = Number(req.params.id);
             const player = Player.getPlayerbyID(id)
-
-            if (!Player) {
-                return res.status(404).json({
-                    status: "fail",
-                    message: "id not exist",
-                });
-            }
-
-            res.status(200).json({
-                status: "success",
-                data: player,
-            });
+            if (!player) return PlayerController.generateLog(res, 404, "fail", "id not exist");
+            PlayerController.generateLog(res, 200, "success", null, player);
         } catch (err) {
-            res.status(500).json({ status: "error", message: "Faild to fetch player"});
+            PlayerController.generateLog(res, 500, "error", "Failed to fetch player");
         }
     }
 
     static addNewPlayer(req, res) {
         try {
             const newPlayer = Player.addNewPlayer(req.body);
-            res.status(201).json({
-                status: "success",
-                data: newPlayer,
-            });
+            PlayerController.generateLog(res, 201, "success", null, newPlayer);
         } catch (err) {
-            res.status(500).json({ status: "error", message: "Failed to add new player" });
+            PlayerController.generateLog(res, 500, "error", "Failed to add new player");
         }
     }
 
     static updatePlayer(req, res) {
         try{
             const id = Number(req.params.id);
-            const toy = Player.updatePlayer(id, req.body);
-
-
-            if (!Player) {
-                return res.status(404).json({
-                    status: "fail",
-                    id: id,
-                    message: "id not exist",
-                });
-            }
-
-            res.status(200).json({
-                status: "success",
-                data: player,
-            });
+            const player = Player.updatePlayer(id, req.body);
+            if (!player) return PlayerController.generateLog(res, 404, "fail", "id not exist");
+            PlayerController.generateLog(res, 200, "success", null, player);
         } catch (err) {
-            res.status(500).json({ status: "error", message: "Failed to update the player" });
+            PlayerController.generateLog(res, 500, "error", "Failed to update the player");
         }
     }
 
@@ -73,23 +45,18 @@ class PlayerController {
         try {
             const id = Number(req.params.id);
             const player = Player.deletePlayer(id, req.body);
-
-
-            if (!player) {
-                return res.status(404).json({
-                    status: "fail",
-                    message: "id not exist",
-                });
-            }
-
-            res.status(200).json({
-                status: "success delete",
-                data: player,
-            });
-
+            if (!player) return PlayerController.generateLog(res, 404, "fail", "id not exist");
+            PlayerController.generateLog(res, 200, "success", null, player);
         } catch (err) {
-            res.status(500).json({ status: "error", message: "Failed to delete the player" });
+            PlayerController.generateLog(res, 500, "error", "Failed to delete the player");
         }
+    }
+
+    static generateLog(res, code, status, message = null, data = null){
+        const  response = { status };
+        if (message) response.message = message;
+        if (data) response.data = data;
+        return res.status(code).json(response);
     }
 }
 
